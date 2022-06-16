@@ -1,0 +1,19 @@
+.container-modal{
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  border-radius: 0.5rem;
+  background: var(--grey-100);
+}
+
+.container-button{
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
