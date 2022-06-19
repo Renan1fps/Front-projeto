@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Router from 'next/router'
 
-
 export const AuthContext = createContext([]);
 
 export function AuthProvider({ children }) {
@@ -54,6 +53,7 @@ export function AuthProvider({ children }) {
   async function signOut() {
     localStorage.removeItem('token');
     window.location.reload();
+    Router.push("/");
   }
 
   return (
