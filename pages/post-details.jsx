@@ -40,7 +40,7 @@ export default function Posts({ match }) {
             }
         } catch (err) {
             console.log(err)
-            toast.error("Algo de errado errado aconteceu, tente novamente mais tarde")
+            toast.error("Algo de errado aconteceu, tente novamente mais tarde")
         }
     }
 

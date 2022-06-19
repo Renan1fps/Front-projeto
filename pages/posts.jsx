@@ -39,7 +39,7 @@ export default function Posts() {
       }
     } catch (err) {
       console.log(err)
-      toast.error("Algo de errado errado aconteceu, tente novamente mais tarde")
+      toast.error("Algo de errado aconteceu, tente novamente mais tarde")
     }
   }
 

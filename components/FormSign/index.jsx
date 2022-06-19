@@ -21,7 +21,7 @@ export function FormSign() {
         try {
             await SignIn.createUser({ name, password, email, isAdmin: false },
                 () => toast.success("Usuário cadastrado com sucesso"),
-               // Router.push("the)
+                Router.push("/login")
             )
             setLoading(false);
         } catch (err) {
