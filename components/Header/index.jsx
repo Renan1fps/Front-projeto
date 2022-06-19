@@ -4,8 +4,6 @@ import { AdvancedButton } from "../AdvancedButton/index";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth";
 import { SignOutButton } from "../SigOut/index";
-import { useEffect } from "react";
-import { toast } from "react-toastify";
 
 export function Header() {
   const { isAuthenticated, user } = useContext(AuthContext);
@@ -39,6 +37,7 @@ export function Header() {
           filter: "brightness(0.8)",
         }}
         brightness
+        onClick={()=> Router.push("/")}
       >
         Home
       </Text>

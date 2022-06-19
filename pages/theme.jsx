@@ -53,6 +53,10 @@ export default function Themes() {
             <Feature
               title={theme.name}
               desc={theme.resum}
+              minHi={100}
+              mwi={200}
+              minWi={500}
+              click={()=> ("")}
             />
           ))}
         </Flex>

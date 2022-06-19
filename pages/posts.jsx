@@ -43,6 +43,7 @@ export default function Posts() {
     }
   }
 
+
   return (
     <Flex height="100vh">
       <Header />
@@ -52,6 +53,11 @@ export default function Posts() {
             <Feature
               title={post.title}
               desc={post.resum}
+              minHi={400}
+              mwi={500}
+              minWi={500}
+              more={true}
+              click={()=> Router.push(`post-details?id=${post.id_post}`)}
             />
           ))}
         </Flex>
