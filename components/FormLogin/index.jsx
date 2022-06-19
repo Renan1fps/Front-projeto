@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import { Flex, Input, Stack, Button, Image, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { Flex, Input, Stack, Button, Image, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
 import { AuthContext } from "../../context/auth";
 import { toast } from "react-toastify";
+import Router from "next/router";
 
 export function FormLogin() {
   const { signIn, loadingAuth } = useContext(AuthContext);
@@ -46,13 +47,26 @@ export function FormLogin() {
               color="whiteAlpha.900"
             />
             <InputRightElement width="4.5rem">
-              <Button h="1.5rem" size="sm" onClick={handleClick}>
+              <Button h="1.5rem" size="sm" onClick={handleClick} bg="gray.600">
                 {show ? "Hide" : "Show"}
               </Button>
             </InputRightElement>
           </InputGroup>
           <Button bg="#4eedd8" onClick={() => userAuth()}>
             {loadingAuth ? "Carregando..." : "Entrar"}
+          </Button>
+          <Button
+            bg="gray.600"
+            onClick={() => Router.push("/signIn")}
+            h="8"
+            ml="32"
+            color="whiteAlpha.700"
+            _hover={{
+              color: "black",
+              background: "gray.100",
+            }}
+          >
+            Cadastre-se
           </Button>
         </Stack>
       </Flex>

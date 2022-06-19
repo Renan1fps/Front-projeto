@@ -39,10 +39,12 @@ export function AuthProvider({ children }) {
       }
       
       const dataUSer = {
-        ...data.user
+        ...data.user,
+        ...data.choices,
       };
       //api.defaults.headers.Authorization = `Bearer ${data.access_token}`;
       setUser(dataUSer);
+      setUserToken(data.token);
       storageAuth(data.token);
       setLoading(false);
       localStorage.setItem('token', JSON.stringify(data.token));

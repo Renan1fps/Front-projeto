@@ -6,7 +6,7 @@ export const api = axios.create({
     baseURL: "https://localhost:7294",
     headers: {
         mode: 'cors',
-        Authorization: `Bearer ${null}`,
+        token: "$2a$12$npjMjLOXFiH6DP8ISvVbLOH/hN0En.A36FvfCnTGwCmJkfhMyXG1y",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Authorization",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE",

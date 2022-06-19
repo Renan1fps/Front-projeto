@@ -7,8 +7,6 @@ import { useEffect } from "react";
 export default function Home() {
   const { isAuthenticated, user } = useContext(AuthContext);
 
-  useEffect(()=>{}, [])
-
   return (
     <Flex height="100vh">
       <Header />
