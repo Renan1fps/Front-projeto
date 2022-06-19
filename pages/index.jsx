@@ -14,8 +14,8 @@ export default function Home() {
         <Text
           fontSize="5xl"
           fontWeight="bold"
-          color="whiteAlpha.800"
-          transition="filter 0.9s"
+          color="#4eedd8"
+          transition="all 0.9s"
           _hover={{
             color: "#4eedd8",
             filter: "brightness(0.8)",
@@ -23,7 +23,7 @@ export default function Home() {
           ml="32"
           mt="16"
         >
-          {isAuthenticated ? `Bem-vindo, ${user.name}👋` : "Seja bem-vindo! 👋"}
+          {isAuthenticated ? `Bem-vindo, ${user.name}👋` : "Seja bem-vindo! 📰"}
         </Text>
         <Image
           src="/images/logoV2.png"

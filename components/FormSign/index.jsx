@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Flex, Input, Stack, Button, Image, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 import { SignIn } from "../../services/request/signIn";
-
+import Router from "next/router";
 
 export function FormSign() {
     const [loading, setLoading] = useState(false);
@@ -20,7 +20,8 @@ export function FormSign() {
         setLoading(true);
         try {
             await SignIn.createUser({ name, password, email, isAdmin: false },
-                () => toast.success("Usuário cadastrado com sucesso")
+                () => toast.success("Usuário cadastrado com sucesso"),
+               // Router.push("the)
             )
             setLoading(false);
         } catch (err) {

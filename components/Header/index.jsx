@@ -39,7 +39,7 @@ export function Header() {
         brightness
         onClick={()=> Router.push("/")}
       >
-        Home
+        Início
       </Text>
       <Text
         fontSize="1xl"
@@ -53,7 +53,7 @@ export function Header() {
         }}
         onClick={() => Router.push("/posts")}
       >
-        Posts
+        Postagens
       </Text>
       <Text
         fontSize="1xl"
@@ -79,7 +79,7 @@ export function Header() {
         }}
         onClick={() => Router.push("/theme")}
       >
-        Users
+        Usuários
       </Text> : null}
       {isAuthenticated ? <SignOutButton /> : <AdvancedButton />}
     </Flex>
