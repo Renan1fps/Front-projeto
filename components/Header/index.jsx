@@ -4,9 +4,11 @@ import { AdvancedButton } from "../AdvancedButton/index";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth";
 import { SignOutButton } from "../SigOut/index";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export function Header() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, user } = useContext(AuthContext);
 
   return (
     <Flex
@@ -67,6 +69,19 @@ export function Header() {
       >
         Temas
       </Text>
+      { isAuthenticated && user && user.isAdmin ? <Text
+        fontSize="1xl"
+        fontWeight="bold"
+        color="whiteAlpha.800"
+        transition="filter 0.5s"
+        _hover={{
+          color: "#4eedd8",
+          cursor: "pointer",
+        }}
+        onClick={() => Router.push("/theme")}
+      >
+        Users
+      </Text> : null}
       {isAuthenticated ? <SignOutButton /> : <AdvancedButton />}
     </Flex>
   );

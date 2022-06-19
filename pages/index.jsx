@@ -1,24 +1,31 @@
 import { Header } from "../components/Header";
 import { Text, Flex, Image } from "@chakra-ui/react";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth";
+import { useEffect } from "react";
 
 export default function Home() {
+  const { isAuthenticated, user } = useContext(AuthContext);
+
+  useEffect(()=>{}, [])
+
   return (
     <Flex height="100vh">
       <Header />
       <Flex align="flex-start" justify="center" mt="64" h="100vh" ml="16">
         <Text
-          fontSize="6xl"
+          fontSize="5xl"
           fontWeight="bold"
           color="whiteAlpha.800"
-          transition="filter 0.5s"
+          transition="filter 0.9s"
           _hover={{
             color: "#4eedd8",
-            cursor: "pointer",
+            filter: "brightness(0.8)",
           }}
           ml="32"
           mt="16"
         >
-          Seja bem vindo! 👋
+          {isAuthenticated ? `Bem-vindo, ${user.name}👋` : "Seja bem-vindo! 👋"}
         </Text>
         <Image
           src="/images/logoV2.png"
@@ -27,6 +34,7 @@ export default function Home() {
           width=""
           padding="4"
           mt="-32"
+          filter="invert(30%)"
         />
       </Flex>
     </Flex>

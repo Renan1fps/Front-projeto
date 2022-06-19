@@ -7,6 +7,7 @@ export default function Themes() {
   const { isAuthenticated, user } = useContext(AuthContext);
 
   useEffect(() => {
+    console.log(isAuthenticated);
     if (!isAuthenticated) {
       toast.error("Usuário não autenticado");
       Router.push("/login");

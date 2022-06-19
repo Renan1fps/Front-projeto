@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/auth";
 import { toast } from "react-toastify";
 
 export function FormLogin() {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, loadingAuth } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false)
@@ -13,7 +13,7 @@ export function FormLogin() {
   async function userAuth() {
     if (email !== "" && password !== "") {
       await signIn({ email, password });
-    }else{
+    } else {
       toast.error("Preencha todos os campos")
     }
   }
@@ -52,7 +52,7 @@ export function FormLogin() {
             </InputRightElement>
           </InputGroup>
           <Button bg="#4eedd8" onClick={() => userAuth()}>
-            Entrar
+            {loadingAuth ? "Carregando..." : "Entrar"}
           </Button>
         </Stack>
       </Flex>
