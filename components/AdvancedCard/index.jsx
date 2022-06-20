@@ -1,14 +1,32 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
-import { ArrowForwardIcon } from '@chakra-ui/icons'
-import Router from "next/router";
+import {
+    Box,
+    Heading,
+    Text,
+} from "@chakra-ui/react";
+import { useState } from "react";
 
-export function Feature({ title, desc, hi, mwi, minWi, minHi, more, click, ...rest }) {
+export function Feature({ title, desc, hi, mwi, minWi, minHi, more, click, isDisable, ...rest }) {
+    const [selected, setSelected] = useState(false);
+
+    function teste() {
+        console.log("DISABLE", isDisable)
+        if (isDisable >= 3) {
+            return
+        }
+
+        if (selected) {
+            setSelected(false);
+        } else {
+            setSelected(true);
+        }
+    }
+
     return (
         <Box
             p={5} shadow='md'
             borderWidth='1px'
             {...rest}
-            bg="gray.700"
+            bg={selected ? "green.500" : "gray.700"}
             borderRadius="8"
             color="whiteAlpha.800"
             boxShadow='dark-lg'
@@ -27,10 +45,10 @@ export function Feature({ title, desc, hi, mwi, minWi, minHi, more, click, ...re
             mt="16"
             ml="480"
             overflow="hidden"
-            onClick={() => click()}
+            onClick={() => { click(); teste() }}
         >
             <Heading fontSize='xl'>{title}</Heading>
-            <Text mt={4} textAlign="justify">{desc}</Text>
+            <Text mt={4} textAlign="justify" >{desc}</Text>
         </Box>
     )
 }

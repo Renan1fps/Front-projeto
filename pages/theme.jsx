@@ -10,15 +10,16 @@ import { Header } from "../components/Header";
 import { useState } from "react";
 import { useRef } from "react";
 import { ThemeRequest } from "../services/request/theme";
-
+import { SelectChoices } from "../components/Choices/index"
 
 export default function Themes() {
   const isMount = useRef();
   const { isAuthenticated, user } = useContext(AuthContext);
   const [themes, setThemes] = useState([]);
+  const [isFirstAccess, setIsFirstAccess] = useState();
 
   useEffect(() => {
-    if(isMount.current) return;
+    if (isMount.current) return;
 
     isMount.current = true;
 
@@ -26,16 +27,19 @@ export default function Themes() {
       toast.error("Usuário não autenticado");
       Router.push("/login");
     } else {
-      getData();
+      if (user && !user.idAdmin && user.idChoices[0] === null || user.idChoices[1] === null || user.idChoices[2] === null) {
+        toast.error("Selecione temas para poder ver postagens");
+        setIsFirstAccess(true);
+      } else {
+        getData();
+      }
     }
   }, []);
-
 
   async function getData() {
     try {
       const data = await ThemeRequest.getAllThemes();
       if (data) {
-        console.log(data)
         setThemes(data);
       }
     } catch (err) {
@@ -44,7 +48,7 @@ export default function Themes() {
     }
   }
 
-  return (
+  return (isFirstAccess ? <SelectChoices /> :
     <Flex height="100vh">
       <Header />
       <Stack spacing={8}>
@@ -56,7 +60,7 @@ export default function Themes() {
               minHi={100}
               mwi={200}
               minWi={500}
-              click={()=> ("")}
+              click={() => ("")}
             />
           ))}
         </Flex>
