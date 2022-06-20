@@ -6,7 +6,7 @@ export function SignOutButton() {
   const { signOut } = useContext(AuthContext);
   return (
     <Button
-      onClick={() => signOut() }
+      onClick={() => signOut()}
       borderRadius="16"
       bg="#4eedd8"
       transition="filter 0.5s"

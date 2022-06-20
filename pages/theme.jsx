@@ -4,17 +4,21 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth";
 import Router from "next/router";
 import { toast } from "react-toastify";
-import { Flex, HStack, Stack } from "@chakra-ui/react";
+import { Flex, Stack } from "@chakra-ui/react";
 import { Feature } from "../components/AdvancedCard"
 import { Header } from "../components/Header";
 import { useState } from "react";
 import { useRef } from "react";
 import { ThemeRequest } from "../services/request/theme";
 import { SelectChoices } from "../components/Choices/index"
+import { LoadingContext } from "../context/loading";
+import { Loading } from "../components/Spinner";
+
 
 export default function Themes() {
   const isMount = useRef();
   const { isAuthenticated, user } = useContext(AuthContext);
+  const { increseLoading, decreaseLoading, loading } = useContext(LoadingContext)
   const [themes, setThemes] = useState([]);
   const [isFirstAccess, setIsFirstAccess] = useState();
 
@@ -37,18 +41,23 @@ export default function Themes() {
   }, []);
 
   async function getData() {
+    increseLoading();
     try {
       const data = await ThemeRequest.getAllThemes();
       if (data) {
         setThemes(data);
       }
+      decreaseLoading();
     } catch (err) {
-      console.log(err)
-      toast.error("Algo de errado aconteceu, tente novamente mais tarde")
+      console.log(err);
+      toast.error("Algo de errado aconteceu, tente novamente mais tarde");
+      decreaseLoading();
+    } finally {
+      decreaseLoading();
     }
   }
 
-  return (isFirstAccess ? <SelectChoices /> :
+  return (isFirstAccess ? (<SelectChoices />) : (loading ? <Loading /> :
     <Flex height="100vh">
       <Header />
       <Stack spacing={8}>
@@ -65,6 +74,6 @@ export default function Themes() {
           ))}
         </Flex>
       </Stack>
-    </Flex>
+    </Flex>)
   );
 }

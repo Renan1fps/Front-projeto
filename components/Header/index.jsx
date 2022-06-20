@@ -37,7 +37,7 @@ export function Header() {
           filter: "brightness(0.8)",
         }}
         brightness
-        onClick={()=> Router.push("/")}
+        onClick={() => Router.push("/")}
       >
         Início
       </Text>
@@ -68,7 +68,7 @@ export function Header() {
       >
         Temas
       </Text>
-      { isAuthenticated && user && user.isAdmin ? <Text
+      {isAuthenticated && user && user.isAdmin ? <Text
         fontSize="1xl"
         fontWeight="bold"
         color="whiteAlpha.800"

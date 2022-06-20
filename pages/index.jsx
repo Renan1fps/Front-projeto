@@ -2,7 +2,6 @@ import { Header } from "../components/Header";
 import { Text, Flex, Image } from "@chakra-ui/react";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth";
-import { useEffect } from "react";
 
 export default function Home() {
   const { isAuthenticated, user } = useContext(AuthContext);
