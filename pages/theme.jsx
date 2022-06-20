@@ -18,7 +18,7 @@ import { Loading } from "../components/Spinner";
 export default function Themes() {
   const isMount = useRef();
   const { isAuthenticated, user } = useContext(AuthContext);
-  const { increseLoading, decreaseLoading, loading } = useContext(LoadingContext)
+  const { increseLoading, decreaseLoading, loading } = useContext(LoadingContext);
   const [themes, setThemes] = useState([]);
   const [isFirstAccess, setIsFirstAccess] = useState();
 

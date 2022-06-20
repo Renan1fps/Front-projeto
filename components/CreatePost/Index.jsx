@@ -6,13 +6,16 @@ import { toast } from "react-toastify";
 import Router from "next/router";
 import { PostsRequest } from "../../services/request/posts";
 import { AuthContext } from "../../context/auth";
+import { LoadingContext } from "../../context/loading";
 import { ThemeRequest } from "../../services/request/theme";
 import { useEffect } from "react";
+import { Loading } from "../Spinner";
 
 export function FormCreatePost() {
-    const { isAuthenticated, user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const { increseLoading, decreaseLoading, loading } = useContext(LoadingContext);
     const isMount = useRef();
-    const [loading, setLoading] = useState(false);
+    const [loadingC, setLoading] = useState(false);
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const [resum, setResum] = useState("");
@@ -28,20 +31,23 @@ export function FormCreatePost() {
     }, []);
 
     async function getData() {
+        increseLoading();
         try {
             const data = await ThemeRequest.getAllThemes();
             if (data) {
                 setThemes(data);
             }
+            decreaseLoading();
         } catch (err) {
             console.log(err)
             toast.error("Algo de errado aconteceu, tente novamente mais tarde")
+        } finally {
+            decreaseLoading();
         }
     }
 
 
     async function register() {
-        console.log({title, body, resum, idTheme })
         if (title === "" || body === "" || resum === "" || idTheme === "") {
             toast.error("Preencha todos os campos")
             return;
@@ -61,7 +67,7 @@ export function FormCreatePost() {
         }
     }
 
-    return (
+    return (loading ? <Loading /> :
         <Flex w="100vw" h="100vh" align="center" justify="center">
             <Flex
                 as="form"
@@ -91,12 +97,12 @@ export function FormCreatePost() {
                     <Textarea
                         placeholder='Resumo'
                         color="whiteAlpha.900"
-                        onChange={(e)=> setResum(e.target.value)}
+                        onChange={(e) => setResum(e.target.value)}
                     />
                     <Textarea
                         placeholder='Deposite seu artigo'
                         color="whiteAlpha.900"
-                        onChange={(e)=> setBody(e.target.value)}
+                        onChange={(e) => setBody(e.target.value)}
                     />
                     <Button
                         bg="#4eedd8"
@@ -104,7 +110,7 @@ export function FormCreatePost() {
                         h="8"
                         ml="32"
                     >
-                        {loading ? "Cadastrando" : "Cadastrar"}
+                        {loadingC ? "Cadastrando" : "Cadastrar"}
                     </Button>
                 </Stack>
             </Flex>

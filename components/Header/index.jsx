@@ -77,7 +77,7 @@ export function Header() {
           color: "#4eedd8",
           cursor: "pointer",
         }}
-        onClick={() => Router.push("/theme")}
+        onClick={() => Router.push("/users")}
       >
         Usuários
       </Text> : null}

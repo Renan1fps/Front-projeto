@@ -13,7 +13,6 @@ import {
     ModalCloseButton,
     ModalHeader,
     ModalBody,
-    Lorem,
     ModalFooter
 } from "@chakra-ui/react";
 import { Feature } from "../AdvancedCard/index"

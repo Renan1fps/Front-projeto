@@ -75,11 +75,12 @@ export default function Posts() {
               click={() => Router.push(`post-details?id=${post.id_post}`)}
             />
           ))}
-          <HStack justify="center" align="center">
-            <Button ml="500" mt="8" onClick={() => Router.push("/create-post")}>
-              Criar Post
-            </Button>
-          </HStack>
+          { user && user.isAdmin ?
+            <HStack justify="center" align="center">
+              <Button ml="500" mt="8" onClick={() => Router.push("/create-post")}>
+                Criar Post
+              </Button>
+            </HStack> : <></>}
         </Flex>
       </Stack>
     </Flex>
