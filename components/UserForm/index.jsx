@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Flex, Input, Stack, Button, Image, InputGroup, InputRightElement, Select } from "@chakra-ui/react";
+import { Flex, Input, Stack, Button, InputGroup, InputRightElement, Select } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 import Router, { useRouter } from "next/router";
 import { AuthContext } from "../../context/auth";
@@ -68,7 +68,12 @@ export function FormUserDetails() {
         }
         setLoading(true);
         try {
-            await UsereRequest.updateUserByID(query.id, { name, email, password, isAdmin: admin }, () => {
+            await UsereRequest.updateUserByID(query.id, {
+                name,
+                email,
+                password: password || "n",
+                isAdmin: admin
+            }, () => {
                 toast.success("Usuário atualizado com sucesso");
                 Router.push("/")
             })

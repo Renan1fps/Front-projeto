@@ -6,8 +6,16 @@ export class ThemeRequest {
     return data;
   }
 
-  static async createChoices(choices, idUser) {
+  static async createChoices() {
     const { data } = await api.post('/themes');
+    return data;
+  }
+
+  static async createThema(theme, callback) {
+    const { data, status } = await api.post('/themes', theme);
+    if (status === 200) {
+      callback();
+    }
     return data;
   }
 }

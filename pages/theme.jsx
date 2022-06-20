@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth";
 import Router from "next/router";
 import { toast } from "react-toastify";
-import { Flex, Stack } from "@chakra-ui/react";
+import { Button, Flex, HStack, Stack } from "@chakra-ui/react";
 import { Feature } from "../components/AdvancedCard"
 import { Header } from "../components/Header";
 import { useState } from "react";
@@ -73,6 +73,12 @@ export default function Themes() {
             />
           ))}
         </Flex>
+        { user && user.isAdmin ?
+            <HStack justify="center" align="center">
+              <Button ml="500" mt="6" onClick={() => Router.push("/create-theme")}>
+                Criar Tema
+              </Button>
+            </HStack> : <></>}
       </Stack>
     </Flex>)
   );
